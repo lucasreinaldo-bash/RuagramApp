@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1072400167606",
+    "firebase_url": "https://ruagram-f7784.firebaseio.com",
+    "project_id": "ruagram-f7784",
+    "storage_bucket": "ruagram-f7784.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072400167606:android:8eee447a5f6bf28236ac17",
+        "android_client_info": {
+          "package_name": "com.vostore.ruagramapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1072400167606-o0h5u9euith4qqnjv135copd3vdt8t5q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgcQGmEaiy8FfR81FyWNi_TVmuz3F1FL0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1072400167606-o0h5u9euith4qqnjv135copd3vdt8t5q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
