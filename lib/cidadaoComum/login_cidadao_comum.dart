@@ -4,19 +4,19 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ruagramapp/geolocalizacaoUsuario.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import 'agentePublico/menuPrincipal.dart';
-import 'introducao.dart';
-import 'models/user_model.dart';
-import 'style/theme.dart' as Theme;
+import '../introducao.dart';
+import '../models/user_model.dart';
+import '../style/theme.dart' as Theme;
 
-class Login extends StatefulWidget {
-  Login({Key key}) : super(key: key);
+class LoginCidadaoComum extends StatefulWidget {
+  LoginCidadaoComum({Key key}) : super(key: key);
 
   @override
-  _Login createState() => new _Login();
+  _LoginCidadaoComum createState() => new _LoginCidadaoComum();
 }
 
-class _Login extends State<Login> with SingleTickerProviderStateMixin {
+class _LoginCidadaoComum extends State<LoginCidadaoComum>
+    with SingleTickerProviderStateMixin {
   final _nameController = TextEditingController();
   final _apelidoController = TextEditingController();
   final _emailController = TextEditingController();
@@ -98,8 +98,8 @@ class _Login extends State<Login> with SingleTickerProviderStateMixin {
                               left: 30, right: 30, top: 10, bottom: 20),
                           child: Image.asset(
                             'assets/logo.png',
-                            width: 300,
-                            height: 300,
+                            width: 200,
+                            height: 200,
                           )),
                     ),
                     Expanded(
@@ -124,6 +124,11 @@ class _Login extends State<Login> with SingleTickerProviderStateMixin {
                             constraints: const BoxConstraints.expand(),
                             child: _buildSignIn(context),
                           ),
+                          new ConstrainedBox(
+                              constraints: const BoxConstraints.expand(),
+                              child: SingleChildScrollView(
+                                child: _buildSignUp(context),
+                              )),
                         ],
                       ),
                     ),
@@ -338,6 +343,54 @@ class _Login extends State<Login> with SingleTickerProviderStateMixin {
                     ],
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsets.all(1),
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        height: 40,
+                        child: FlatButton(
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            disabledColor: Colors.transparent,
+                            splashColor: Colors.transparent,
+                            color: Colors.transparent,
+                            onPressed: () {},
+                            child: Image.asset(
+                              'assets/gmail.png',
+                            )),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 40,
+                        child: FlatButton(
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            disabledColor: Colors.transparent,
+                            splashColor: Colors.transparent,
+                            color: Colors.transparent,
+                            onPressed: () {},
+                            child: Image.asset(
+                              'assets/fb.png',
+                            )),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Center(
+                        child: Text(
+                          "Não tem conta ? Arraste para o lado!",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.black26),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           ]));
@@ -619,7 +672,7 @@ class _Login extends State<Login> with SingleTickerProviderStateMixin {
   void _onSucess() {
     Future.delayed(Duration(seconds: 2)).then((_) {
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => MenuPrincipal()));
+          .push(MaterialPageRoute(builder: (context) => Introducao()));
     });
   }
 

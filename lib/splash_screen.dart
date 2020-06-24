@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ruagramapp/escolher_ambiente.dart';
 import 'package:ruagramapp/main.dart';
 
 import 'Login.dart';
@@ -21,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
       () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => Login(),
+          builder: (context) => EscolherAmbiente(),
         ),
       ),
     );

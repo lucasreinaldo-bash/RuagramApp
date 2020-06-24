@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
               home: SplashScreen(),
 //      home: Principal(),
               debugShowCheckedModeBanner: false,
-              title: "Compreaí Delivery",
+              title: "RuaGram Informativo",
               theme: ThemeData(
                   primarySwatch: Colors.blue,
                   primaryColor: Color.fromARGB(255, 20, 125, 141)),
