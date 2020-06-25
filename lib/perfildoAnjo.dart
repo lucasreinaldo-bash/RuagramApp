@@ -12,12 +12,37 @@ import 'models/user_model.dart';
 class PerfildoAnjo extends StatelessWidget {
   List<String> galeriaImages = new List();
   CarouselSlider instance;
-  String nomeCompleto, imagem, historia, whatsappResponsavel;
+  List cidadeEstado;
+
+  String nomeCompleto,
+      imagem,
+      localizacaoFrequente,
+      apelido,
+      cadUnico,
+      dataNascimento,
+      doencas,
+      escolaridade,
+      idoso,
+      profissionalResponsavel,
+      sexo,
+      sus;
   List galeriaPagina;
 
   UserModel user;
-  PerfildoAnjo(@required this.nomeCompleto, @required this.imagem,
-      @required this.historia, this.whatsappResponsavel);
+  PerfildoAnjo(
+      @required this.nomeCompleto,
+      @required this.imagem,
+      @required this.localizacaoFrequente,
+      @required this.apelido,
+      @required this.cadUnico,
+      @required this.cidadeEstado,
+      @required this.dataNascimento,
+      @required this.doencas,
+      @required this.escolaridade,
+      @required this.idoso,
+      @required this.profissionalResponsavel,
+      @required this.sexo,
+      @required this.sus);
 
   @override
   void initState() {
@@ -27,114 +52,138 @@ class PerfildoAnjo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          child: Image.asset("assets/icon_zap.png"),
-          elevation: 10,
-          highlightElevation: 20,
-          focusElevation: 10,
-          hoverElevation: 20,
-          onPressed: () async {
-            var whatsappUrl =
-                "whatsapp://send?phone=${whatsappResponsavel}&text=${"Olá, vim através do App CompreAqui!"}";
-            await canLaunch(whatsappUrl)
-                ? launch(whatsappUrl)
-                : print(
-                    "open whatsapp app link or do a snackbar with notification that there is no whatsapp installed");
-          },
-        ),
         body: Stack(
-          children: <Widget>[
-            Container(
-              decoration: new BoxDecoration(
-                image: new DecorationImage(
-                  image: new AssetImage("assets/fundo_card.png"),
-                  fit: BoxFit.cover,
+      children: <Widget>[
+        Container(
+          decoration: new BoxDecoration(
+            image: new DecorationImage(
+              image: new AssetImage("assets/fundo_card.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: null /* add child content content here */,
+        ),
+        SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(top: 90),
+                child: Center(
+                    child: Card(
+                  elevation: 40,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(100.0),
+                      side: BorderSide(color: Colors.white30)),
+                  child: Container(
+                      width: 180.0,
+                      height: 180.0,
+                      decoration: new BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: new DecorationImage(
+                            fit: BoxFit.fill,
+                            image: new NetworkImage(imagem),
+                          ))),
+                )),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                nomeCompleto,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "Conhecido por: " + apelido,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "Sua localização mais frequente é: " + localizacaoFrequente,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.black38),
+              ),
+              SizedBox(
+                height: 60,
+              ),
+              Card(
+                elevation: 4,
+                child: ExpansionTile(
+                  title: Text("Dados Médicos"),
+                  children: [
+                    ListTile(
+                      title: Text("Doenças Diagnósticadas: " + doencas),
+                      leading: Icon(Icons.healing),
+                    ),
+                  ],
                 ),
               ),
-              child: null /* add child content content here */,
-            ),
-            SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(top: 90),
-                    child: Center(
-                        child: Card(
-                      elevation: 40,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(100.0),
-                          side: BorderSide(color: Colors.white30)),
-                      child: Container(
-                          width: 180.0,
-                          height: 180.0,
-                          decoration: new BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: new DecorationImage(
-                                fit: BoxFit.fill,
-                                image: new NetworkImage(imagem),
-                              ))),
-                    )),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    nomeCompleto,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Row(
-                    children: <Widget>[
-                      SizedBox(
-                        width: 60,
-                      ),
-                      Text(
-                        historia,
-                        style: TextStyle(color: Colors.black38),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 60,
-                  ),
-                  SizedBox(
-                      height: 200.0,
-                      width: 350.0,
-                      child: Carousel(
-                        images: [
-                          Image.asset("assets/logo.png"),
-                        ],
-                        dotSize: 4.0,
-                        dotSpacing: 15.0,
-                        dotColor: Colors.lightGreenAccent,
-                        indicatorBgPadding: 5.0,
-                        dotBgColor: Colors.green.withOpacity(0.5),
-                        borderRadius: true,
-                        moveIndicatorFromBottom: 180.0,
-                        noRadiusForIndicator: true,
-                      )),
-                  SizedBox(
-                    width: 200,
-                    child: InkWell(
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.keyboard_return,
-                          color: Colors.green.shade600,
+              Card(
+                elevation: 4,
+                child: ExpansionTile(
+                  title: Text("Ficha Completa"),
+                  children: [
+                    Column(
+                      children: [
+                        ListTile(
+                          title: Text("Nível de Escolaridade: " + escolaridade),
+                          leading: Icon(Icons.school),
                         ),
-                      ),
-                      onTap: () {
-                        if (Navigator.canPop(context)) {
-                          Navigator.pop(context);
-                        }
-                      },
-                    ),
-                  )
-                ],
+                        ListTile(
+                          title: Text("Data de Nascimento: " + dataNascimento),
+                          leading: Icon(Icons.child_care),
+                        ),
+                        ListTile(
+                          title: Text("Idoso: " + idoso),
+                          leading: Icon(Icons.person_outline),
+                        ),
+                        ListTile(
+                          title: Text("Data de Nascimento: " + dataNascimento),
+                          leading: Icon(Icons.child_care),
+                        ),
+                        ListTile(
+                          title: Text("Cartão do SUS: " + sus),
+                          leading: Icon(Icons.credit_card),
+                        ),
+                        ListTile(
+                          title: Text("Cartão do CAD Unico: " + cadUnico),
+                          leading: Icon(Icons.credit_card),
+                        ),
+                        ListTile(
+                          title: Text(
+                              "Profissional responsável pelo cadastro: " +
+                                  profissionalResponsavel),
+                          leading: Icon(Icons.person),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
-            )
-          ],
-        ));
+              SizedBox(
+                width: 200,
+                child: InkWell(
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.keyboard_return,
+                      color: Colors.green.shade600,
+                    ),
+                  ),
+                  onTap: () {
+                    if (Navigator.canPop(context)) {
+                      Navigator.pop(context);
+                    }
+                  },
+                ),
+              )
+            ],
+          ),
+        )
+      ],
+    ));
   }
 }

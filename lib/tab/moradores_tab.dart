@@ -13,23 +13,16 @@ class MoradoresTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.menu,
-          color: Colors.deepPurple,
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.purple, //change your color here
         ),
-        heroTag: "demoValue",
-        elevation: 10,
-        highlightElevation: 20,
-        focusElevation: 10,
-        hoverElevation: 20,
         backgroundColor: Colors.white,
-        onPressed: () async {},
       ),
       body: FutureBuilder<QuerySnapshot>(
         future: Firestore.instance
-            .collection("Anjos")
-            .where("cidade", arrayContains: cidade)
+            .collection("PopulacaoEmRua")
+            .where("cidadeEstado", arrayContains: "Alagoinhas-Bahia")
             .getDocuments(),
         builder: (context, snapshot) {
           if (!snapshot.hasData)
@@ -39,65 +32,30 @@ class MoradoresTab extends StatelessWidget {
           else {
             return Stack(
               children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(top: 50, left: 10),
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Icon(
-                      Icons.menu,
-                      color: Colors.deepPurple,
-                    ),
-                  ),
-                ),
                 Column(
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.only(top: 30),
+                      padding: EdgeInsets.only(top: 10),
                       child: Align(
                           alignment: Alignment.topCenter,
                           child: Column(
                             children: <Widget>[],
                           )),
                     ),
-                    SizedBox(
-                        height: 150.0,
-                        width: 350.0,
-                        child: Carousel(
-                          images: [
-                            Image.asset("assets/logo.png"),
-                          ],
-                          dotSize: 4.0,
-                          dotSpacing: 15.0,
-                          dotColor: Colors.blueGrey,
-                          indicatorBgPadding: 5.0,
-                          dotBgColor: Colors.white12,
-                          borderRadius: true,
-                          moveIndicatorFromBottom: 180.0,
-                          noRadiusForIndicator: true,
-                        )),
-                    Padding(
-                      padding: EdgeInsets.only(left: 1, top: 10),
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        child: Text(
-                          "Você está em $cidade",
-                          style: TextStyle(
-                            color: Colors.black38,
-                            fontFamily: "QuickSand",
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
+                    Image.asset(
+                      "assets/logo.png",
+                      height: 100,
+                      width: 100,
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 1, top: 20),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Text(
-                          "Veja os anjos que estão proximos de você: ",
+                          "Essas são as pessoas em situação de rua na sua cidade:",
                           style: TextStyle(
                             fontFamily: "QuickSand",
-                            fontSize: 20,
+                            fontSize: 16,
                           ),
                         ),
                       ),

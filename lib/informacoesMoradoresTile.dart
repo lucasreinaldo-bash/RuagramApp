@@ -21,10 +21,20 @@ class InformacoesMoradoresTile extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => PerfildoAnjo(
-                          snapshot.data["nomeCompleto"],
-                          snapshot.data["imagem"],
-                          snapshot.data["historia"],
-                          snapshot.data["telefoneResponsavel"])));
+                            snapshot.data["nome"],
+                            snapshot.data["photo"],
+                            snapshot.data["localizacaoFrequente"],
+                            snapshot.data["apelido"],
+                            snapshot.data["cadUnico"],
+                            snapshot.data["cidadeEstado"],
+                            snapshot.data["dataNascimento"],
+                            snapshot.data["doencas"],
+                            snapshot.data["escolaridade"],
+                            snapshot.data["idoso"],
+                            snapshot.data["profissionalResponsavel"],
+                            snapshot.data["sexo"],
+                            snapshot.data["sus"],
+                          )));
                 },
                 child: Container(
                     width: 200,
@@ -60,14 +70,14 @@ class InformacoesMoradoresTile extends StatelessWidget {
                                         image: new DecorationImage(
                                           fit: BoxFit.fill,
                                           image: new NetworkImage(
-                                              snapshot.data["imagem"]),
+                                              snapshot.data["photo"]),
                                         ))),
                               )),
                             ),
                             Align(
                               alignment: Alignment.center,
                               child: Text(
-                                snapshot.data["nomeCompleto"],
+                                snapshot.data["nome"],
                                 style: TextStyle(
                                   fontFamily: "assets/fonts/GillSansLight.ttf",
                                   color: Colors.black54,
@@ -91,7 +101,7 @@ class InformacoesMoradoresTile extends StatelessWidget {
                             Align(
                               alignment: Alignment.center,
                               child: Text(
-                                snapshot.data["historia"],
+                                snapshot.data["localizacaoFrequente"],
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontFamily: "assets/fonts/GillSansLight.ttf",
@@ -105,48 +115,40 @@ class InformacoesMoradoresTile extends StatelessWidget {
                             SizedBox(
                               height: 20,
                             ),
-                            Text(
-                              snapshot.data["apadrinhada"] == "Sim"
-                                  ? "Apadrinhado(a): Não"
-                                  : "Apadrinhado(a): Sim",
-                              textAlign: TextAlign.left,
-                            ),
-                            Text(
-                                "Visitas no perfil: " +
-                                    snapshot.data["visitas"].toString() +
-                                    " pessoas.",
-                                textAlign: TextAlign.left),
                             OutlineButton(
                               hoverColor: Colors.white,
                               highlightColor: Colors.white70,
                               highlightElevation: 10,
                               child: Container(
-                                width: 111,
-                                height: 30,
-                                child: Row(
-                                  children: <Widget>[
-                                    Text(snapshot.data["genero"] == "Masculino"
-                                        ? 'Quero conhecê-lo'
-                                        : "Quero conhecê-la"),
-                                  ],
-                                ),
-                              ),
+                                  width: 111,
+                                  height: 30,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5),
+                                    child: Text(
+                                      snapshot.data["sexo"] == "Masculino"
+                                          ? 'Ver Perfil'
+                                          : "Ver Perfil",
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  )),
                               onPressed: () {
-                                Future<Null> _atualizarVisitas() async {
-                                  DocumentReference documentReference =
-                                      Firestore.instance
-                                          .collection("Anjos")
-                                          .document(snapshot.documentID);
-                                  int visitasAtuais = snapshot.data["visitas"];
-                                  visitasAtuais++;
-                                  Firestore.instance
-                                      .runTransaction((transaction) async {
-                                    await transaction.update(documentReference,
-                                        {"visitas": visitasAtuais});
-                                  });
-                                }
-
-                                _atualizarVisitas();
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => PerfildoAnjo(
+                                          snapshot.data["nome"],
+                                          snapshot.data["photo"],
+                                          snapshot.data["localizacaoFrequente"],
+                                          snapshot.data["apelido"],
+                                          snapshot.data["cadUnico"],
+                                          snapshot.data["cidadeEstado"],
+                                          snapshot.data["dataNascimento"],
+                                          snapshot.data["doencas"],
+                                          snapshot.data["escolaridade"],
+                                          snapshot.data["idoso"],
+                                          snapshot
+                                              .data["profissionalResponsavel"],
+                                          snapshot.data["sexo"],
+                                          snapshot.data["sus"],
+                                        )));
                               },
 
 //                                Navigator.of(context).push(MaterialPageRoute(
@@ -168,34 +170,6 @@ class InformacoesMoradoresTile extends StatelessWidget {
                               ),
                             ),
                           ],
-                        ),
-                        SizedBox(
-                          width: 60,
-                          height: 70,
-                          child: Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Card(
-                                elevation: 40,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(90.0),
-                                    side: BorderSide(color: Colors.white30)),
-                                child: Padding(
-                                  padding: EdgeInsets.all(2),
-                                  child: Column(
-                                    children: <Widget>[
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(snapshot.data["visitas"].toString()),
-                                      Icon(
-                                        Icons.person_outline,
-                                        color: Colors.amber,
-                                      ),
-                                    ],
-                                  ),
-                                )),
-                          ),
                         ),
                       ],
                     )),
