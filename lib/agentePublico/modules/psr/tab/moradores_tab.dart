@@ -22,7 +22,7 @@ class MoradoresTab extends StatelessWidget {
       body: FutureBuilder<QuerySnapshot>(
         future: Firestore.instance
             .collection("PopulacaoEmRua")
-            .where("cidadeEstado", arrayContains: "Alagoinhas-Bahia")
+            .where("cidadeEstado", isEqualTo: "Alagoinhas-Bahia")
             .getDocuments(),
         builder: (context, snapshot) {
           if (!snapshot.hasData)

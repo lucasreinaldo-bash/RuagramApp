@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ruagramapp/cidadaoComum/login_cidadao_comum.dart';
+import 'package:ruagramapp/geolocalizacaoUsuario.dart';
 
 import 'Login.dart';
 
@@ -76,7 +77,7 @@ class _EscolherAmbienteState extends State<EscolherAmbiente> {
             highlightColor: Colors.white70,
             highlightElevation: 10,
             child: Text(
-              'Sou Cidadão Comum         ',
+              'Sou Cidadão                       ',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black,
@@ -85,8 +86,8 @@ class _EscolherAmbienteState extends State<EscolherAmbiente> {
             ),
 
             onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => LoginCidadaoComum()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => GeolocalizacaoUsuario()));
 
 //                Navigator.of(context).push(MaterialPageRoute(
 //                    builder: (context) =>

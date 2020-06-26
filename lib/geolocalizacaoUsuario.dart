@@ -9,8 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import 'package:ruagramapp/tab/moradores_tab.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'package:ruagramapp/cidadaoComum/dashboard_screen_cidadao.dart';
 
 import 'Login.dart';
 
@@ -195,9 +194,9 @@ class _MyMapPageState extends State<MyMapPage> {
                           if (marker != null && endereco != null) {
                             print(cidadeEstado);
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => MoradoresTab(
-//                                      cidade: cidadeEstado,
-//                                      endereco: endereco,
+                                builder: (context) => DashboardScreenCidadao(
+                                      cidadeEstado,
+                                      endereco,
                                     )));
                           } else {
                             snackBar();
@@ -209,9 +208,10 @@ class _MyMapPageState extends State<MyMapPage> {
                               if (marker != null && endereco != null) {
                                 print(cidadeEstado);
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => MoradoresTab(
-                                          cidade: cidadeEstado,
-                                          endereco: endereco,
+                                    builder: (context) =>
+                                        DashboardScreenCidadao(
+                                          cidadeEstado,
+                                          endereco,
                                         )));
                               } else {
                                 snackBar();

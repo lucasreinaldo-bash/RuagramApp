@@ -2,10 +2,9 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ruagramapp/agentePublico/modules/psr/cadastrar_psr.dart';
+import 'package:ruagramapp/agentePublico/modules/psr/tab/moradores_tab.dart';
 import 'package:ruagramapp/geolocalizacaoUsuario.dart';
 import 'package:ruagramapp/telaAviso.dart';
-
-import '../../../tab/moradores_tab.dart';
 
 class MenuPsr extends StatelessWidget {
   @override

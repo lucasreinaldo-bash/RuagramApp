@@ -27,6 +27,7 @@ class _CadastrarPSRState extends State<CadastrarPSR> {
   final controllerApelido = TextEditingController();
   final controllerLocalizacaoFrequente = TextEditingController();
   final controllerResponsavel = TextEditingController();
+  final controllerCressResponsavel = TextEditingController();
   final controllerDataNascimento = TextEditingController();
   final controllerEscolaridade = TextEditingController();
   final controllerNumeroCAD = TextEditingController();
@@ -85,6 +86,7 @@ class _CadastrarPSRState extends State<CadastrarPSR> {
             );
           else {
             controllerResponsavel.text = snapshot.data["nome"];
+            controllerCressResponsavel.text = snapshot.data["cress"];
             cidade = snapshot.data["cidadeEstado"];
             return Scaffold(
                 key: _scaffoldKey,
@@ -395,21 +397,56 @@ class _CadastrarPSRState extends State<CadastrarPSR> {
                                                     ),
                                                   ],
                                                 ),
-                                                TextField(
-                                                  onChanged: (text) {
-                                                    alterar = true;
-                                                  },
-                                                  autofocus: false,
-                                                  enabled: false,
-                                                  controller:
-                                                      controllerResponsavel,
-                                                  decoration: InputDecoration(
-                                                    labelText:
-                                                        "Responsável pelo Cadastro",
-                                                    border: InputBorder.none,
-                                                    icon: Icon(
-                                                        Icons.person_outline),
-                                                  ),
+                                                ExpansionTile(
+                                                  title: Text(
+                                                      "Responsável pelo Cadastro"),
+                                                  children: [
+                                                    Card(
+                                                      child: Column(
+                                                        children: [
+                                                          TextField(
+                                                            onChanged: (text) {
+                                                              alterar = true;
+                                                            },
+                                                            autofocus: false,
+                                                            enabled: false,
+                                                            controller:
+                                                                controllerResponsavel,
+                                                            decoration:
+                                                                InputDecoration(
+                                                              labelText:
+                                                                  "Assistente Social",
+                                                              border:
+                                                                  InputBorder
+                                                                      .none,
+                                                              icon: Icon(Icons
+                                                                  .person_outline),
+                                                            ),
+                                                          ),
+                                                          TextField(
+                                                            onChanged: (text) {
+                                                              alterar = true;
+                                                            },
+                                                            autofocus: false,
+                                                            enabled: false,
+                                                            controller:
+                                                                controllerCressResponsavel,
+                                                            decoration:
+                                                                InputDecoration(
+                                                              labelText:
+                                                                  "Registro no Conselho Regional de Serviço Social",
+                                                              border:
+                                                                  InputBorder
+                                                                      .none,
+                                                              icon: Icon(Icons
+                                                                  .person_outline),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      elevation: 5,
+                                                    ),
+                                                  ],
                                                 ),
                                                 OutlineButton(
                                                   hoverColor: Colors.white,
@@ -516,6 +553,12 @@ class _CadastrarPSRState extends State<CadastrarPSR> {
                                                             .updateData({
                                                           "profissionalResponsavel":
                                                               controllerResponsavel
+                                                                  .text
+                                                        });
+                                                        documentReference
+                                                            .updateData({
+                                                          "cressResponsavel":
+                                                              controllerCressResponsavel
                                                                   .text
                                                         });
                                                         documentReference

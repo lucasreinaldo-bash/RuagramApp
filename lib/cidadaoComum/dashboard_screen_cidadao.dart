@@ -3,30 +3,40 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ruagramapp/agentePublico/modules/dashboard/ajudar_screen.dart';
 import 'package:ruagramapp/agentePublico/modules/psr/menu_psr.dart';
+import 'package:ruagramapp/cidadaoComum/ajudar_screen_cidadao.dart';
 import 'package:ruagramapp/geolocalizacaoUsuario.dart';
+import 'package:ruagramapp/models/user_model.dart';
 import 'package:ruagramapp/telaAviso.dart';
 
-import '../../../models/user_model.dart';
-import 'ajudar_screen.dart';
+class DashboardScreenCidadao extends StatefulWidget {
+  String cidadeEstado, endereco;
 
-class DashboardScreen extends StatefulWidget {
+  DashboardScreenCidadao(this.cidadeEstado, this.endereco);
   @override
-  _DashboardScreenState createState() => _DashboardScreenState();
+  _DashboardScreenCidadaoState createState() =>
+      _DashboardScreenCidadaoState(this.cidadeEstado, this.endereco);
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
+class _DashboardScreenCidadaoState extends State<DashboardScreenCidadao> {
   FirebaseUser firebaseUser;
+  String cidadeEstado, endereco;
+  _DashboardScreenCidadaoState(this.cidadeEstado, this.endereco);
+
   @override
   Widget build(BuildContext context) {
+    print(cidadeEstado);
+    print(endereco);
     String uid = UserModel.of(context).firebaseUser.uid;
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.white,
           onPressed: () {
             print("a");
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => AjudarScreen()));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) =>
+                    AjudarScreenCidadao(cidadeEstado, endereco)));
           },
           child: Image.asset(
             "assets/handle.png",
@@ -66,23 +76,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       fontFamily: "QuickSand",
                                       color: Colors.white),
                                 ),
-                                StreamBuilder(
-                                  stream: Firestore.instance
-                                      .collection("ConsumidorFinal")
-                                      .document(uid)
-                                      .snapshots(),
-                                  builder: (context, snapshot) {
-                                    if (!snapshot.hasData) {
-                                    } else {
-                                      return Text(
-                                        "Localidade: " +
-                                            snapshot.data["cidadeEstado"],
-                                        style: TextStyle(
-                                            fontFamily: "QuickSand",
-                                            color: Colors.white70),
-                                      );
-                                    }
-                                  },
+                                Text(
+                                  "Localidade: " + cidadeEstado,
+                                  style: TextStyle(
+                                      fontFamily: "QuickSand",
+                                      color: Colors.white70),
                                 ),
                                 SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,

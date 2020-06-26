@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ruagramapp/perfildoAnjo.dart';
+import 'package:ruagramapp/perfil_psr.dart';
 
 class InformacoesMoradoresTile extends StatelessWidget {
   final DocumentSnapshot snapshot;
@@ -18,24 +18,6 @@ class InformacoesMoradoresTile extends StatelessWidget {
           child: Column(
             children: <Widget>[
               InkWell(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => PerfildoAnjo(
-                            snapshot.data["nome"],
-                            snapshot.data["photo"],
-                            snapshot.data["localizacaoFrequente"],
-                            snapshot.data["apelido"],
-                            snapshot.data["cadUnico"],
-                            snapshot.data["cidadeEstado"],
-                            snapshot.data["dataNascimento"],
-                            snapshot.data["doencas"],
-                            snapshot.data["escolaridade"],
-                            snapshot.data["idoso"],
-                            snapshot.data["profissionalResponsavel"],
-                            snapshot.data["sexo"],
-                            snapshot.data["sus"],
-                          )));
-                },
                 child: Container(
                     width: 200,
                     height: 320,
@@ -133,7 +115,7 @@ class InformacoesMoradoresTile extends StatelessWidget {
                                   )),
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => PerfildoAnjo(
+                                    builder: (context) => PerfilPsr(
                                           snapshot.data["nome"],
                                           snapshot.data["photo"],
                                           snapshot.data["localizacaoFrequente"],
@@ -146,6 +128,7 @@ class InformacoesMoradoresTile extends StatelessWidget {
                                           snapshot.data["idoso"],
                                           snapshot
                                               .data["profissionalResponsavel"],
+                                          snapshot.data["cressResponsavel"],
                                           snapshot.data["sexo"],
                                           snapshot.data["sus"],
                                         )));

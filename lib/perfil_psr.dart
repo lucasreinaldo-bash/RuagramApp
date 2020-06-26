@@ -9,10 +9,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'models/user_model.dart';
 
-class PerfildoAnjo extends StatelessWidget {
+class PerfilPsr extends StatelessWidget {
   List<String> galeriaImages = new List();
   CarouselSlider instance;
-  List cidadeEstado;
+  String cidadeEstado;
 
   String nomeCompleto,
       imagem,
@@ -24,12 +24,13 @@ class PerfildoAnjo extends StatelessWidget {
       escolaridade,
       idoso,
       profissionalResponsavel,
+      cressResponsavel,
       sexo,
       sus;
   List galeriaPagina;
 
   UserModel user;
-  PerfildoAnjo(
+  PerfilPsr(
       @required this.nomeCompleto,
       @required this.imagem,
       @required this.localizacaoFrequente,
@@ -41,6 +42,7 @@ class PerfildoAnjo extends StatelessWidget {
       @required this.escolaridade,
       @required this.idoso,
       @required this.profissionalResponsavel,
+      @required this.cressResponsavel,
       @required this.sexo,
       @required this.sus);
 
@@ -158,6 +160,11 @@ class PerfildoAnjo extends StatelessWidget {
                               "Profissional responsável pelo cadastro: " +
                                   profissionalResponsavel),
                           leading: Icon(Icons.person),
+                        ),
+                        ListTile(
+                          title: Text("CRESS do responsável pelo cadastro: " +
+                              cressResponsavel),
+                          leading: Icon(Icons.credit_card),
                         )
                       ],
                     )
