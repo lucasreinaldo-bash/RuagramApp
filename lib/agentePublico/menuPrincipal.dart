@@ -1,6 +1,7 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:ruagramapp/agentePublico/modules/dashboard/dashboard_screen.dart';
 import 'package:ruagramapp/agentePublico/modules/psr/menu_psr.dart';
 import 'package:ruagramapp/geolocalizacaoUsuario.dart';
 import 'package:ruagramapp/telaAviso.dart';
@@ -32,7 +33,11 @@ class MenuPrincipal extends StatelessWidget {
                         child: Image.asset("assets/btn_psr.png"),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          print("a");
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => DashboardScreen()));
+                        },
                         child: Image.asset("assets/btn_dashboard.png"),
                       ),
                       InkWell(
